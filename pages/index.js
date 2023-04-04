@@ -115,7 +115,7 @@ export default function JoinOurTeam() {
                   key={avatar.name}
                   name={avatar.name}
                   src={avatar.url}
-                  size={useBreakpointValue({ base: 'md', md: 'lg' })}
+                  size={({ base: 'md', md: 'lg' })}
                   position={'relative'}
                   zIndex={2}
                   _before={{
@@ -145,8 +145,8 @@ export default function JoinOurTeam() {
               bg={'gray.800'}
               color={'white'}
               rounded={'full'}
-              minWidth={useBreakpointValue({ base: '44px', md: '60px' })}
-              minHeight={useBreakpointValue({ base: '44px', md: '60px' })}
+              minWidth={({ base: '44px', md: '60px' })}
+              minHeight={({ base: '44px', md: '60px' })}
               position={'relative'}
               _before={{
                 content: '""',
@@ -263,27 +263,27 @@ export default function JoinOurTeam() {
           form
         </Stack>
       </Container>
-      <Blur
+      {/* <Blur
         position={'absolute'}
         top={-10}
         left={-10}
         style={{ filter: 'blur(70px)' }}
-      />
+      /> */}
     </Box>
   );
 }
 
-export const Blur = (props=IconProps) => {
-  return (
-    <Icon
-      width={useBreakpointValue({ base: '100%', md: '40vw', lg: '30vw' })}
-      zIndex={useBreakpointValue({ base: -1, md: -1, lg: 0 })}
-      height="560px"
-      viewBox="0 0 528 560"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}>
+// export const Blur = (props=IconProps) => {
+//   return (
+//     <Icon
+//       width={useBreakpointValue({ base: '100%', md: '40vw', lg: '30vw' })}
+//       zIndex={useBreakpointValue({ base: -1, md: -1, lg: 0 })}
+//       height="560px"
+//       viewBox="0 0 528 560"
+//       fill="none"
+//       xmlns="http://www.w3.org/2000/svg"
+//       {...props}>
       
-    </Icon>
-  );
-};
+//     </Icon>
+//   );
+// };
