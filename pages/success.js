@@ -1,4 +1,4 @@
-import {Heading,Text,Center} from "@chakra-ui/react"
+import {Heading,Button,Center} from "@chakra-ui/react"
 import {useState} from 'react'
 
 function Home1() {
@@ -48,8 +48,8 @@ console.log(data)
            Last: {comment.last},
            Email: {comment.email},
            Phone: {comment.phone}.
-            <button onClick={()=>updateComment(comment.id)}>Update</button>
-             <button onClick={()=>deleteComment(comment.id)}>Delete</button>
+            {/* <button onClick={()=>updateComment(comment.id)}>Update</button> */}
+             <Button color="red.600" onClick={()=>deleteComment(comment.id)}>Delete</Button>
           </div>
         )
       })
