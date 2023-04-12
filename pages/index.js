@@ -51,37 +51,76 @@ export default function JoinOurTeam() {
   const[last,setLast]=useState("")
   const[email,setEmail]=useState("")
   const[phone,setPhone]=useState("")
+
+  // const[comments,setComments]=useState([])
+  const[comment,setComment]=useState('')
+
+
+
+
+ const submitComment = async () => {
+  const response = await fetch("/api/comments",{
+    method:'POST',
+    body:JSON.stringify({first,last,email,phone}),
+    headers:{
+      'Content-Type' : 'application/json'
+    }
+   
+  })
+
+  const data = response.json()
+  console.log(data)
+
+  router.push("/success")
+ }
+
+
+
+ const updateComment = async (commentId) => {
+  const response = await fetch(`/api/comments/${commentId}`,{
+    method:"PUT",
+    body:JSON.stringify({first,last,email,phone}),
+    headers:{
+      'Content-Type' : 'application/json',
+     
+    }
+  })
+  const data = await response.json()
+  console.log(data)
+  // fetchComments()
+
+}
   
 
 
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
 
    
 
-    const teamPayload = {
-        first,
-        last,
-        email,
-        phone
-    }
-    console.log("Payload: ",teamPayload)
+  //   const teamPayload = {
+  //       first,
+  //       last,
+  //       email,
+  //       phone
+  //   }
+  //   console.log("Payload: ",teamPayload)
 
-    try {
-      const {data} = await axios ({
-        url:"/api/teamadd",
-        method:"POST",
-        data:teamPayload
-      });
-      console.log("Response Back: ",data)
-    } catch (error) {
-      console.log("Error: ",error)
-    }
+  //   try {
+  //     const {data} = await axios ({
+  //       url:"/api/teamadd",
+  //       method:"POST",
+  //       data:teamPayload
+  //     });
+  //     console.log("Response Back: ",data)
+  //   } catch (error) {
+  //     console.log("Error: ",error)
+  //   }
 
-   router.push("/success")
+  //  router.push("/success")
     
-  }
+  // }
 
   return (
     <Box position={'relative'}>
@@ -195,7 +234,7 @@ export default function JoinOurTeam() {
                 placeholder="Firstname"
                 type="text"
                 value={first}
-                onChange={({target})=>setFirst(target?.value)}
+                onChange={(e)=>setFirst(e.target.value)}
                 bg={'gray.100'}
                 border={0}
                 color={'gray.500'}
@@ -208,7 +247,7 @@ export default function JoinOurTeam() {
                 placeholder="Lastname"
                 type="text"
                 value={last}
-                onChange={({target})=>setLast(target?.value)}
+                onChange={(e)=>setLast(e.target.value)}
                 bg={'gray.100'}
                 border={0}
                 color={'gray.500'}
@@ -220,7 +259,7 @@ export default function JoinOurTeam() {
                 placeholder="Email id"
                 type="email"
                 value={email}
-                onChange={({target})=>setEmail(target?.value)}
+                onChange={(e)=>setEmail(e.target.value)}
                 bg={'gray.100'}
                 border={0}
                 color={'gray.500'}
@@ -232,7 +271,7 @@ export default function JoinOurTeam() {
                 placeholder="+91"
                 type="number"
                 value={phone}
-                onChange={({target})=>setPhone(target?.value)}
+                onChange={(e)=>setPhone(e.target.value)}
                 bg={'gray.100'}
                 border={0}
                 color={'gray.500'}
@@ -245,7 +284,7 @@ export default function JoinOurTeam() {
               </Button>
             </Stack>
             <Button
-            onClick={handleSubmit}
+            onClick={submitComment}
               fontFamily={'heading'}
               mt={8}
               w={'full'}
@@ -259,6 +298,10 @@ export default function JoinOurTeam() {
               >
               Submit
             </Button>
+           
+           
+            {/* <button onClick={()=>updateComment(comment.id)}>Update</button> */}
+             
           </Box>
           form
         </Stack>
